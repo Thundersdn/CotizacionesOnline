@@ -1,13 +1,13 @@
 class UsuariosController < ApplicationController
- #before_filter :save_login_state, :only => [:new, :create]
+  before_filter :authorize, :only => [:new, :create, :index, :edit, :show, :destroy]
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
   # GET /usuarios.json
   def index
-    if(current_user.privilegios < 4)
-      redirect_to '/home'
-    end
+    #if(current_user.privilegios < 4)
+    #  redirect_to '/home'
+    #end
     @usuarios = Usuario.all
 
   end

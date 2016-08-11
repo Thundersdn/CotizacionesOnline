@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
+    #logger.debug "Ejecutando antes de la accion #{self.action_name} del controlador #{self.controller_name}"
     redirect_to '/login' unless current_user
+    if self.controller_name == 'usuarios' && current_user.privilegios < 4
+      redirect_to '/home'
+    end
+
   end
 end
