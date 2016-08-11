@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @usuario.rut %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @usuario.nombre %>
+</p>
+
+<p>
+  <strong>Privilegios:</strong>
+  <%= @usuario.privilegios %>
+</p>
+
+<%= link_to 'Editar', edit_usuario_path(@usuario) %> |
+<%= link_to 'Volver', usuarios_path %>

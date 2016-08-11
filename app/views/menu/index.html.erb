@@ -1,0 +1,10 @@
+<h1>Menu</h1>
+<p>Bienvenido <%= current_user.nombre%></p>
+<%= link_to "Gestion", '/gestion'%><br>
+<%= link_to "Cotizaciones", '/cotizaciones'%><br>
+<!--Verificamos si el usuario es un administrador-->
+<%if current_user.privilegios > 3 %>
+    <%= link_to "Administrar Usuarios", 'usuarios'%><br>
+<%end%>
+
+<%= link_to "Desconectar", '/logout' %>

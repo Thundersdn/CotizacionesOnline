@@ -1,0 +1,15 @@
+<% @page_title = "Login" -%>
+<div class= "Login">
+  <h1>Log in</h1>
+  <% if flash[:color] == "invalid"%>
+      <div class="invalid_notice">
+        <p><%= flash[:notice]%></p>
+      </div>
+  <%end%>
+
+  <%= form_tag('/login') do %>
+      <p>Rut:</br> <%= text_field_tag(:rut) %></p>
+      <p>Contraseña:</br> <%= password_field_tag :pass %></p>
+      <%= submit_tag("Entrar") %>
+  <% end %>
+</div>
