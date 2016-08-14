@@ -1,0 +1,57 @@
+<h1>Listados Estadistcos</h1>
+<%= 'Buscar por:' %>
+
+<br/>
+<%= 'Listados por:' %>
+<br/>
+<select>
+  <option value="clientes_xv">Clientes por Vendedor</option>
+  <option value="clientes_e">Clientes de la Empresa</option>
+  <option value="uc_cliente">Ultimas compras por Cliente</option>
+  <option value="clientes_sc">Clientes sin Compra</option>
+  <option value="uc_empresa">Ultimas compras de la Empresa</option>
+  <option value="balance">Balance de Compras y Ventas</option>
+  <option value="facturas_c">Facturas por cobrar</option>
+  <option value="facturas_p">Facturas por pagar</option>
+  <option value="cheques">Cheques</option>
+  <option value="detalle">Detalle de comisiones</option>
+</select>
+
+<br/>
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+<P ALIGN=center><%= 'Detalle:' %>
+
+<form>
+<P ALIGN=center><input type="radio" name="gender" value="male" checked> Male<br>
+<P ALIGN=center><input type="radio" name="gender" value="female"> Female<br>
+</form>
+
+  <%= 'Listado:' %>
+  <%= 'aqui va el datagrid' %>
+
+  <br/>
+
+  <form>
+
+<P ALIGN=center><input type="text" name="Algo"><br>
+
+  </form>
+
+
+  <button type="button" onclick="link_to("")">Aceptar</button>
+
+  <button type="button" onclick="link_to("")">Guardar</button>
+
+  <button type="button" onclick="link_to("")">Salir</button>
+
+
+
+
+
+
