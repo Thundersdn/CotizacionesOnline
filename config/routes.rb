@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'sesion#login'
 
   resources :usuarios
+  resources :clientes
   resources :sesion, :only => [:crear, :destruir, :login]
+
   #get 'login/index'
   #match ':controller(/:action(/:id))', via: [:get, :post]
   get '/login' => 'sesion#login'
@@ -17,7 +19,16 @@ Rails.application.routes.draw do
   get 'Admin' => 'usuario#index'
 
   get 'gestion' => 'menu#index'
+
+
   get 'cotizaciones' => 'menu#index'
+  get 'cotizaciones/administrar' => 'cotizaciones#administrar'
+  get 'cotizaciones/selCliente'
+  get 'cotizaciones/buscarCliente' => 'cotizaciones#buscarCliente'
+
+  get 'clientes' => 'clientes#index'
+  get 'clientes/new' => 'clientes#new'
+  post 'clientes/create' => 'clientes#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

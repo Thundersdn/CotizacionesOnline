@@ -1,0 +1,37 @@
+<h1>Registrar nuevo cliente</h1>
+<%= form_for @cliente do |f| %>
+    <div>
+      <%= f.label :rut%>
+      <%= f.text_field :rut %>
+    </div>
+    <div>
+      <%= f.label :nombres%>
+      <%= f.text_field :nombres %>
+    </div>
+    <div>
+      <%= f.label :direcion%>
+      <%= f.text_field :direccion %>
+    </div>
+    <div>
+      <%= f.label :ciudad%>
+      <%= f.text_field :ciudad %>
+    </div>
+    <div>
+      <%= f.label :comuna%>
+      <%= f.text_field :comuna %>
+    </div>
+    <div>
+      <%= f.label :telefono%>
+      <%= f.text_field :telefono %>
+    </div>
+    <div>
+      <%= f.label :fax%>
+      <%= f.text_field :fax %>
+    </div>
+    <div>
+      <%= f.label :email%>
+      <%= f.text_field :email %>
+    </div>
+    <%= f.submit "Guardar"%>
+<%end %>
+<%= link_to "Volver", '/home'%>

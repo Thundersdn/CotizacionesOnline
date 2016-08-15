@@ -1,5 +1,5 @@
 class UsuariosController < ApplicationController
-  before_filter :authorize, :only => [:new, :create, :index, :edit, :show, :destroy]
+  #before_filter :authorize, :only => [:new, :create, :index, :edit, :show, :destroy]
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios

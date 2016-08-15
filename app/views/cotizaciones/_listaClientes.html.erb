@@ -1,0 +1,29 @@
+<style>
+  thead.bcli{
+    display: block;
+  }
+    tbody.bcli{
+      display: block;
+      height: 100px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+</style>
+
+<table>
+  <thead class="bcli">
+    <tr>
+      <th>Nombres</th>
+      <th>Rut</th>
+    </tr>
+  </thead>
+  <tbody class="bcli" id="listaClientes">
+    <% @clientes.each do |c| %>
+    <tr>
+      <td><%=c.nombres%></td>
+      <td><%=c.rut%></td>
+      <td><%=link_to "Seleccionar", controller: 'cotizaciones', action:'selCliente', rutCliente: c.rut, remote: true%> </td>
+    </tr>
+      <%end%>
+  </tbody>
+</table>

@@ -1,0 +1,95 @@
+<% if @cliente.nil? %>
+  <table id="tabla_datos_cliente" border="1" align="left" >
+    <th colspan="2">
+      Datos Cliente
+    </th>
+    <th colspan="2">
+      Datos Funcionario
+    </th>
+    <tr>
+      <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
+      <td><%= text_field :post, :administrar%></td>
+      <td>Codigo</td>
+      <td><%= text_field :post, :administrar, :value => current_user.id%></td>
+    </tr>
+    <tr>
+      <td>Nombres</td>
+      <td><%= text_field :post, :administrar%></td>
+      <td>Rut</td>
+      <td><%= text_field :post, :administrar, :value => current_user.rut%></td>
+    </tr>
+    <tr>
+      <td>Direccion</td>
+      <td><%= text_field :post, :administrar%></td>
+      <td>Nombre</td>
+      <td><%= text_field :post, :administrar, :value => current_user.nombre%></td>
+    </tr>
+    <tr>
+      <td>Ciudad</td>
+      <td><%= text_field :post, :administrar%></td>
+    </tr>
+    <tr>
+      <td>Comuna</td>
+      <td><%= text_field :post, :administrar%></td>
+    </tr>
+    <tr>
+      <td>Telefono</td>
+      <td><%= text_field :post, :administrar%></td>
+    </tr>
+    <tr>
+      <td>Fax</td>
+      <td><%= text_field :post, :administrar%></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><%= text_field :post, :administrar%></td>
+    </tr>
+  </table>
+<%else%>
+    <table id="tabla_datos_cliente" border="1" align="left" >
+      <th colspan="2">
+        Datos Cliente
+      </th>
+      <th colspan="2">
+        Datos Funcionario
+      </th>
+      <tr>
+        <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
+        <td><%= text_field :post, :administrar, :value => @cliente.rut%></td>
+        <td>Codigo</td>
+        <td><%= text_field :post, :administrar, :value => current_user.id%></td>
+      </tr>
+      <tr>
+        <td>Nombres</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.nombres%></td>
+        <td>Rut</td>
+        <td><%= text_field :post, :administrar, :value => current_user.rut%></td>
+      </tr>
+      <tr>
+        <td>Direccion</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.direccion%></td>
+        <td>Nombre</td>
+        <td><%= text_field :post, :administrar, :value => current_user.nombre%></td>
+      </tr>
+      <tr>
+        <td>Ciudad</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.ciudad%></td>
+      </tr>
+      <tr>
+        <td>Comuna</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.comuna%></td>
+      </tr>
+      <tr>
+        <td>Telefono</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.telefono%></td>
+      </tr>
+      <tr>
+        <td>Fax</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.fax%></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><%= text_field :post, :administrar, :value => @cliente.email%></td>
+      </tr>
+    </table>
+<%end%>

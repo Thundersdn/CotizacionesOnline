@@ -1,10 +1,37 @@
+<!--
+<head>
+  <script>
+    $(document).ready(function() {
+      $("#accordion").accordion();
+    });
+  </script>
+</head>
+-->
 <h1>Menu</h1>
 <p>Bienvenido <%= current_user.nombre%></p>
-<%= link_to "Gestion", '/gestion'%><br>
-<%= link_to "Cotizaciones", '/cotizaciones'%><br>
+
+
+<div id="accordion">
+  <h3>Cotizaciones</h3>
+  <div>
+    <%= link_to "Administrar", '/cotizaciones/administrar'%><br>
+    <%= link_to "Buscar", '/cotizaciones/buscar'%><br>
+    <%= link_to "Nuevo Cliente", '/clientes/new'%><br>
+    <%= link_to "Estadisticas", '/cotizaciones/estadisticas'%><br>
+  </div>
+
+  <h3>Gestion</h3>
+  <div>
+    <%= link_to "Revisar Listados", '/gestion/listados'%><br>
+    <%= link_to "Revisar Informes", '/gestion/informes'%><br>
+  </div>
+</div>
+
 <!--Verificamos si el usuario es un administrador-->
 <%if current_user.privilegios > 3 %>
+    <br>
     <%= link_to "Administrar Usuarios", 'usuarios'%><br>
 <%end%>
-
+<br>
 <%= link_to "Desconectar", '/logout' %>
+

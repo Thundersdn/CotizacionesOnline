@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @cliente.rut %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @cliente.nombres %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @cliente.direccion %>
+</p>
+
+<%# link_to 'Editar', edit_cliente_path(@usuario) %> |
+<%= link_to 'Volver', '/home' %>

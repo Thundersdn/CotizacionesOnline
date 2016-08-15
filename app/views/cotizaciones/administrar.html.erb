@@ -1,0 +1,91 @@
+<div name="buscarCli" class="oculto">
+<table>
+  <th>
+    Buscar Cliente
+  </th>
+  <tr>
+    <td>Rut:</td>
+    <td><input type="text" onkeyup="buscarCliente(this.value)"></td>
+  </tr>
+</table>
+  <%= render partial: 'listaClientes', locals:{clientes: @clientes} %>
+</div>
+<%= render partial: 'datosClienteFuncionario', locals:{cliente: @cliente}%>
+
+<table border="1" align="auto">
+  <tr>
+    <th> Codigo </th>
+    <th> Descripción </th>
+    <th> Valor Unitario </th>
+    <th> Cantidad </th>
+    <th> Subtotal </th>
+    <th> Descripcion </th>
+    <th> Total </th>
+  </tr>
+  <tr>
+    <td height="258" colspan="7">
+    </td>
+  </tr>
+</table>
+
+<table border="1" align="left">
+  <th colspan="4">
+    Datos Cotización
+  </th>
+  <tr>
+    <td>N° Cotización</td>
+    <td><%= text_field :post, :administrar %></td>
+    <td>Fecha</td>
+    <td><%= text_field :post, :administrar %></td>
+  </tr>
+  <tr>
+    <td>Estado</td>
+    <td>
+      <select>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Rechazada">Rechazada</option>
+        <option value="Aceptada">Aceptada</option>
+        <option value="Expirada">Expirada</option>
+      </select>
+    </td>
+    <td>Total Neto</td>
+    <td><%= text_field :post, :administrar%></td>
+  </tr>
+  <tr>
+    <td>Forma de Pago</td>
+    <td>
+      <select>
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tarjeta">Tarjeta</option>
+        <option value="Cheque">Cheque</option>
+      </select>
+    </td>
+    <td>Descuento</td>
+    <td><%= text_field :post, :administrar%></td>
+  </tr>
+  <tr>
+    <td>Validez</td>
+    <td><%= text_field :post, :administrar%> dias  </td>
+    <td>Sub total</td>
+    <td><%= text_field :post, :administrar%></td>
+  </tr>
+  <tr>
+    <td>Observaciones</td>
+    <td><%= text_field :post, :administrar%></td>
+    <td>Iva</td>
+    <td><%= text_field :post, :administrar%></td>
+  </tr>
+  <tr>
+    <td><br></td>
+    <td><br></td>
+    <td>Total</td>
+    <td><%= text_field :post, :administrar%></td>
+  </tr>
+
+</table>
+<%= link_to "Actualizar", nil %>
+<%= link_to "Consultar", nil %>
+<%= link_to "Limpiar", nil %>
+<%= link_to "Imprimir", nil %>
+<%= link_to "E-Mail", nil %>
+<%= link_to "Volver", '/home' %>

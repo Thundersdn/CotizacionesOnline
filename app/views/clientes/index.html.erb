@@ -1,0 +1,30 @@
+<table>
+  <thead>
+  <tr>
+    <th>Rut</th>
+    <th>Nombre</th>
+    <th>Direccion</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @clientes.each do |c| %>
+      <tr>
+        <td><%= c.rut %></td>
+        <td><%= c.nombres %></td>
+        <td><%= c.direccion %></td>
+        <td><%# usuario.ultimo_login %></td>
+        <td><%= link_to 'Mostrar', cliente %></td>
+        <td><%= link_to 'Editar', edit_cliente_path(usuario) %></td>
+        <td><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'Nuevo Usuario', new_cliente_path %><br>
+<%= link_to 'Volver', 'home' %>
