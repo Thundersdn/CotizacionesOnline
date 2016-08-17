@@ -27,10 +27,10 @@
   </td>
 </tr>
 
-<%= javascript_tag("document.getElementById('Total').value = #{@total};
-                    var d = document.getElementById('Descuento').value;
-                    document.getElementById('SubTotal').value = #{@total}-d;
-                    var sub = document.getElementById('SubTotal').value;
-                    document.getElementById('Iva').value = Math.trunc(sub*0.19);
-                    var iva = document.getElementById('Iva').value;
-                    document.getElementById('TotalF').value = +sub + +iva;") %>
+<%= javascript_tag("document.getElementById('total_neto').value = #{@total};
+                    var d = document.getElementById('descuentos').value;
+                    document.getElementById('subtotal').value = #{@total}-d;
+                    var sub = document.getElementById('subtotal').value;
+                    document.getElementById('iva').value = Math.trunc(sub*0.19);
+                    var iva = document.getElementById('iva').value;
+                    document.getElementById('total').value = +sub + +iva;") %>

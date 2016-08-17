@@ -8,15 +8,15 @@
     </th>
     <tr>
       <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
-      <td><%= text_field :post, :administrar%></td>
+      <td><%= text_field_tag :usuario_id%></td>
       <td>Codigo</td>
-      <td><%= text_field :post, :administrar, :value => current_user.id%></td>
+      <td><%= text_field :codigo, current_user.id%></td>
     </tr>
     <tr>
       <td>Nombres</td>
-      <td><%= text_field :post, :administrar%></td>
+      <td><%= text_field :nombres, :post %></td>
       <td>Rut</td>
-      <td><%= text_field :post, :administrar, :value => current_user.rut%></td>
+      <td><%= text_field :rut,  current_user.rut%></td>
     </tr>
     <tr>
       <td>Direccion</td>
@@ -55,7 +55,7 @@
       </th>
       <tr>
         <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
-        <td><%= text_field :post, :administrar, :value => @cliente.rut%></td>
+        <td><%= text_field_tag :cliente_id, @cliente.rut%></td>
         <td>Codigo</td>
         <td><%= text_field :post, :administrar, :value => current_user.id%></td>
       </tr>

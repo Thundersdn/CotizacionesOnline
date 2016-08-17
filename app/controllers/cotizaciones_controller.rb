@@ -85,10 +85,23 @@ class CotizacionesController < ApplicationController
 
   def actualizar
     @cotizacion = cotizacion_actual
-    puts params[:descuento]
-    puts params[:Total]
+    @cotizacion.usuario_id = current_user.id
+    @cotizacion.cliente_id = params[:cliente_id]
+    @cotizacion.fecha = params[:fecha]
+    @cotizacion.descuentos = params[:descuentos]
+    @cotizacion.estado = params[:estado]
+    @cotizacion.forma_de_pago = params[:forma_de_pago]
+    @cotizacion.iva = params[:iva]
+    @cotizacion.validez = params[:validez]
+    @cotizacion.observacion = params[:observacion]
+    @cotizacion.total = params[:total]
+    @cotizacion.total_neto = params[:total_neto]
+    @cotizacion.subtotal = params[:subtotal]
+    @cotizacion.save()
+
     #@cotizacion.save
     session[:estado] = "guardada"
+    session[:cot_id] = nil
   end
 
   def salir
@@ -105,6 +118,8 @@ class CotizacionesController < ApplicationController
 
     redirect_to '/home'
   end
-
+  #def cotizacion_params
+  #  params.require(:cotizacion).permit(:estado,:fecha,:forma_de_pago,:cliente_id,:usuario_id,:total_neto,:descuentos,:subtotal,:iva,:total,:informacion,:informe_pago,:validez)
+  #end
 
 end

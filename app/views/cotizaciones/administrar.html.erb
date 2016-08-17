@@ -22,25 +22,24 @@
 
   <%= render partial: 'listaProductos', locals:{productos: @productos}%>
 </div>
-
-<%= render partial: 'datosClienteFuncionario', locals:{cliente: @cliente}%>
-
-
-<table border="1" style="display: inline-block;max-height: 292px;overflow-y: auto" id="tabla_productos_cotizacion">
-
-  <%= render partial: 'productosCotizacion', locals:{prodsCot: @prodsCot, cotizacion: @cotizacion}%>
-
-</table>
-
-
 <%=form_tag do%>
+  <%= render partial: 'datosClienteFuncionario', locals:{cliente: @cliente}%>
+
+  <table border="1" style="display: inline-block;max-height: 292px;overflow-y: auto" id="tabla_productos_cotizacion">
+
+    <%= render partial: 'productosCotizacion', locals:{prodsCot: @prodsCot, cotizacion: @cotizacion}%>
+
+  </table>
+
+
+
   <table border="1" >
     <th colspan="4">
       Datos Cotización
     </th>
     <tr>
       <td>N° Cotización</td>
-      <td><%= text_field_tag  :num, cotizacion_actual.id%></td>
+      <td><%= text_field_tag  :id, cotizacion_actual.id%></td>
       <td>Fecha</td>
       <td><%= text_field_tag  :fecha , Time.now%></td>
     </tr>
@@ -50,7 +49,7 @@
         <%= select_tag('estado','<option value="Pendiente">Pendiente</option><option value="Rechazada">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
       </td>
       <td>Total Neto</td>
-      <td><%= text_field_tag  "Total"%></td>
+      <td><%= text_field_tag  :total_neto%></td>
     </tr>
     <tr>
       <td>Forma de Pago</td>
@@ -58,25 +57,25 @@
         <%= select_tag('forma_de_pago', '<option value="Efectivo">Efectivo</option><option value="Tarjeta">Tarjeta</option><option value="Cheque">Cheque</option>'.html_safe )%>
       </td>
       <td>Descuento</td>
-      <td><%= text_field_tag 'Descuento', 0%></td>
+      <td><%= text_field_tag :descuentos, 0%></td>
     </tr>
     <tr>
       <td>Validez</td>
       <td><%= text_field_tag  'validez'%> dias  </td>
       <td>Sub total</td>
-      <td><%= text_field_tag  'SubTotal'%></td>
+      <td><%= text_field_tag  'subtotal'%></td>
     </tr>
     <tr>
       <td>Observaciones</td>
-      <td><%= text_field_tag  'observaciones' %></td>
+      <td><%= text_field_tag  'observacion' %></td>
       <td>Iva</td>
-      <td><%= text_field_tag  'Iva'%></td>
+      <td><%= text_field_tag  'iva'%></td>
     </tr>
     <tr>
       <td><br></td>
       <td><br></td>
       <td>Total</td>
-      <td><%=text_field_tag  'TotalF'%></td>
+      <td><%=text_field_tag  'total'%></td>
     </tr>
   </table>
   <%=submit_tag "Actualizar", :controller => 'cotizaciones', :action => 'actualizar'%>
