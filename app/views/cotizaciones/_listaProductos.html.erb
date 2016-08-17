@@ -1,0 +1,30 @@
+<div id="listaProductos">
+<table border="1" >
+  <thead class="bprod">
+    <tr>
+      <th>Codigo</th>
+      <th>Descripcion</th>
+      <th>Precio Lista</th>
+      <th>Stock</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody class="bprod" style="overflow-y: scroll;height: 10px" >
+  <%if @productos != nil%>
+
+    <% @productos.each do |c| %>
+        <tr>
+          <td><%=c.codigo%></td>
+          <td><%=c.descripcion%></td>
+          <td><%=c.valor_unitario%></td>
+          <td><%=c.stock%></td>
+          <td><%=c.estado%></td>
+          <%if c.stock > 0%>
+              <td><%=link_to "Agregar", controller: 'cotizaciones', action:'agregarProd', codProd: c.codigo, remote: true, codigo:params[:codigo], desc:params[:desc]%> </td>
+          <%end%>
+        </tr>
+    <%end%>
+  <%end%>
+  </tbody>
+</table>
+</div>

@@ -14,7 +14,9 @@ class SesionController < ApplicationController
     if usuario && usuario.authenticate(params[:pass])
       #guardar la id en una cookie
       session[:id] = usuario.id
+      usuario.update_attribute(:ultimo_login, Time.now)
       #flash[:notice] = "Autenticado"
+      session[:cot_id] = nil
       redirect_to '/home'
     else
       #si no logra entrar enviarlo de vuela
@@ -28,7 +30,12 @@ class SesionController < ApplicationController
   end
 
   def destruir
-    session[:id] = nil
+    #session[:id] = nil
+    #if session[:cot_id] != nil && session[:estado] == "nueva"
+    #  Cotizacion.find(session[:cot_id]).destroy
+    #  session[:cot_id] = nil
+    #end
+
     redirect_to '/login'
   end
 

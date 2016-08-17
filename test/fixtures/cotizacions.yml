@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  estado: MyString
+  fecha: 2016-08-16 09:26:53
+  validez: 
+  forma_de_pago: MyString
+  cliente_id: MyString
+  usuario_id: 
+  total_neto: 
+  descuentos: 
+  subtotal: 
+  iva: 
+  total: 
+  observacion: MyString
+  informe_pago: MyString
+
+two:
+  estado: MyString
+  fecha: 2016-08-16 09:26:53
+  validez: 
+  forma_de_pago: MyString
+  cliente_id: MyString
+  usuario_id: 
+  total_neto: 
+  descuentos: 
+  subtotal: 
+  iva: 
+  total: 
+  observacion: MyString
+  informe_pago: MyString

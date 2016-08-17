@@ -15,5 +15,10 @@
   <%= @usuario.privilegios %>
 </p>
 
+<p>
+  <strong>Ultimo Login:</strong>
+  <%= @usuario.ultimo_login %>
+</p>
+
 <%= link_to 'Editar', edit_usuario_path(@usuario) %> |
 <%= link_to 'Volver', usuarios_path %>

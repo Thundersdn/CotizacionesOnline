@@ -1,0 +1,2 @@
+<!--console.log("Ejecutando buscarProd.js");-->
+$("#listaProductos").html("<%= escape_javascript(render partial: 'listaProductos', locals: { productos: @productos } ) %>")

@@ -8,6 +8,13 @@
     element.style.display = "none"
   else
     element.style.display = "block"
+    
+@abrirListaProd = ->
+  element = document.getElementsByName('buscarProd')[0]
+  if element.style.display is "block"
+    element.style.display = "none"
+  else
+    element.style.display = "block"
 
 
 @buscarCliente = (rut) ->
@@ -21,6 +28,27 @@
       r.hidden = true
     else
       r.hidden = false
+
+
+@buscarProd = (cod,des) ->
+#console.log(cod.value)
+#console.log(des.value)
+  $.ajax '/cotizaciones/buscarProd',
+    type: 'get',
+    dataType: 'script',
+    data:
+      codigo: cod.value
+      desc: des.value
+
+@cambiarCantidad = (e,id)->
+  console.log("Cambiando cantidad: "+e.value)
+
+  $.ajax '/cotizaciones/cambiarCantidad',
+    type: 'get',
+    dataType: 'script',
+    data:
+      cant: e.value
+      id_p: id
 
 
     

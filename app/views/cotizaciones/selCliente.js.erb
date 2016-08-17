@@ -1,4 +1,4 @@
 
-console.log("Ejecutando SelCliente.js");
+<!--console.log("Ejecutando SelCliente.js");-->
 document.getElementsByName('buscarCli')[0].style.display = "none";
 $("#tabla_datos_cliente").html("<%= escape_javascript(render partial: 'datosClienteFuncionario', locals: { cliente: @cliente } ) %>");

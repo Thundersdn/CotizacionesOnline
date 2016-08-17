@@ -8,6 +8,23 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def cotizacion_actual
+    #@cotizacion_actual ||= Cotizacion.new(:id => Cotizacion.maximum(:id).to_i.next)
+    #@cotizacion_actual ||= Cotizacion.find(session[:cot_id]) if session[:cot_id]
+    if session[:cot_id] == nil
+      #puts "Creando cotizacion"
+      @cotizacion_actual = Cotizacion.create()
+      session[:cot_id] = @cotizacion_actual.id
+      session[:estado] = "nueva"
+      #puts "Cotizacion creada! id= " + @cotizacion_actual.id.to_s()
+    else
+      puts "Recuperando cotizacion"
+      @cotizacion_actual = Cotizacion.find(session[:cot_id])
+    end
+    return @cotizacion_actual
+  end
+  helper_method :cotizacion_actual
+
   def authorize
     #logger.debug "Ejecutando antes de la accion #{self.action_name} del controlador #{self.controller_name}"
     redirect_to '/login' unless current_user
