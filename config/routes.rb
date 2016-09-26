@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'cotizaciones/cambiarCantidad'
   get 'cotizaciones/actualizar'
   get 'cotizaciones/salir'
-
+  get 'cotizaciones/buscar'
 
   post 'cotizaciones/administrar' => 'cotizaciones#actualizar'
   # The priority is based upon order of creation: first created -> highest priority.

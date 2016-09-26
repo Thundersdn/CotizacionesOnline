@@ -24,15 +24,17 @@ en:
   activerecord:
     attributes:
       usuario:
+        Rut: "Rut"
         password: "Contraseña"
 
     errors:
       models:
         usuario:
           attributes:
-            rut:
-              blank: "no puede estar vacio"
+            Rut:
+              rut_valid: "Este rut no es valido"
             password:
               blank: "no puede estar vacio"
+              size: "es demasiado corta"
 
 

@@ -118,6 +118,12 @@ class CotizacionesController < ApplicationController
 
     redirect_to '/home'
   end
+
+  def buscar
+    @cotizaciones = Cotizacion.all
+    @prodsCot = ProductoCotizacion.all
+  end
+
   #def cotizacion_params
   #  params.require(:cotizacion).permit(:estado,:fecha,:forma_de_pago,:cliente_id,:usuario_id,:total_neto,:descuentos,:subtotal,:iva,:total,:informacion,:informe_pago,:validez)
   #end

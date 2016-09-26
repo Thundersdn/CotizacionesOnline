@@ -1,37 +1,102 @@
-<!--
-<head>
-  <script>
-    $(document).ready(function() {
-      $("#accordion").accordion();
-    });
-  </script>
-</head>
--->
-<h1>Menu</h1>
-<p>Bienvenido <%= current_user.nombre%></p>
 
-
-<div id="accordion">
-  <h3>Cotizaciones</h3>
-  <div>
-    <%= link_to "Administrar", '/cotizaciones/administrar'%><br>
-    <%= link_to "Buscar", '/cotizaciones/buscar'%><br>
-    <%= link_to "Nuevo Cliente", '/clientes/new'%><br>
-    <%= link_to "Estadisticas", '/cotizaciones/estadisticas'%><br>
-  </div>
-
-  <h3>Gestion</h3>
-  <div>
-    <%= link_to "Revisar Listados", '/gestion/listados'%><br>
-    <%= link_to "Revisar Informes", '/gestion/informes'%><br>
-  </div>
-</div>
-
-<!--Verificamos si el usuario es un administrador-->
-<%if current_user.privilegios > 3 %>
-    <br>
-    <%= link_to "Administrar Usuarios", 'usuarios'%><br>
-<%end%>
-<br>
-<%= link_to "Desconectar", '/logout' %>
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-open">
+                            </span>Cotizaciones</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><%= link_to "Administrar", '/cotizaciones/administrar'%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-search text-success"></span><%= link_to "Buscar", '/cotizaciones/buscar'%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-primary"></span><%= link_to "Nuevo Cliente", '/clientes/new'%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><%= link_to "Estadisticas", '/cotizaciones/estadisticas'%>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                            </span>Gestion</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <%= link_to "Revisar Listados", '/gestion/listados'%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <%= link_to "Revisar Informes", '/gestion/informes'%>
+                                    </td>
+                                </tr>
+                  
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <%if current_user.privilegios > 3 %>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
+                            </span>Usuarios</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <%= link_to "Administrar Usuarios", 'usuarios'%><br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <%end%>
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h4 class="panel-title">
+                          <%= link_to "Desconectar", '/logout' %>
+                      </h4>
+                  </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+            <div class="well">
+                <h1>Bienvenido!</h1>
+                <h2><%= current_user.nombre%></h2>
+            </div>
+        </div>
+    </div>

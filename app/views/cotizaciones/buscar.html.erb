@@ -1,0 +1,16 @@
+<h2>LISTA DE COTIZACIONES</h2>
+
+<% @cotizaciones.each do |c| %>
+    <h3>Id: <%=c.id%></h3>
+    <p>fecha: <%=c.fecha%></p>
+    <p>Rut Cliente: <%=c.cliente_id%> Id Funcionario: <%=c.usuario_id%></p>
+    <h3>Productos</h3>
+    <% c.productos.each do |p|%>
+      <p>Codigo: <%=p.codigo %></p>
+        <p>Descripcion: <%=p.descripcion %></p>
+        <p>Cantidad: <%=c.producto_cotizacions.find_by(:producto_id => p.id).cantidad%></p>
+        <p>Precio: <%= c.producto_cotizacions.find_by(:producto_id => p.id).cantidad*p.valor_unitario%></p>
+    <%end%>
+    <p>Total: <%=c.total%></p>
+<%end%>
+<%=link_to "Volver", '/home'%>

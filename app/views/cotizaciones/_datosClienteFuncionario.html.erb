@@ -7,7 +7,8 @@
       Datos Funcionario
     </th>
     <tr>
-      <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
+      <!--<td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>-->
+      <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a>
       <td><%= text_field_tag :usuario_id%></td>
       <td>Codigo</td>
       <td><%= text_field :codigo, current_user.id%></td>
