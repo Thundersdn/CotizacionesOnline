@@ -2,6 +2,7 @@
 <% if params[:modo] != nil%>
 	<%case params[:modo]%>
 	<%when "1"%>
+		<% ids = [] %>
 		<% content_for :title, 'Listado de clientes por vendedor' %>
 		<h3>Listado de clientes por vendedor</h3>
 		<table class="table">
@@ -13,7 +14,7 @@
 				Rut de vendedor  
 			</div>
 			<th>
-				   <%= id%>
+				   <%= @us.find(c[0].usuario_id).rut%>
 			</div>
 			</div>
 		</tr>
@@ -33,7 +34,7 @@
 			</th>
 		</tr>
 		<% c.each do |cot| %>
-		<%if cot.cliente_id != nil%>
+		<%if cot.cliente_id != nil && !ids.include?(cot.cliente_id)%>
 		<tr>
 			<td>
 			<%=@cli.find(cot.cliente_id).rut%>
@@ -48,6 +49,7 @@
 			<%=@cli.find(cot.cliente_id).email%>
 			</td>
 		</tr>
+		<% ids << cot.cliente_id %>
 		<%end%>
 		<%end%>
 

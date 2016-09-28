@@ -8,7 +8,7 @@ end
 
 def mostrarListado
 	@cli = Cliente.all
-	@usuarios = Usuario.all
+	@us = Usuario.all
 	@cots = Cotizacion.all
 
 	case params[:modo]
