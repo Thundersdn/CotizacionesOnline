@@ -1,0 +1,28 @@
+<!-- Column Chart --> 
+<div class="col-xs-5">
+	<%if @cots.length == 0%>
+		<% if params[:ano] != nil%>
+			<h3>No existen cotizaciones del <%=params[:mes]%>/<%=params[:ano]%></h3>
+		<%else%>
+			<h3>No existen cotizaciones del <%=Date.today.strftime("%m/%Y")%></h3>
+		<%end%>
+	<%else%>
+		<% if params[:ano] != nil%>
+			<h3>Cotizaciones del <%=params[:mes]%>/<%=params[:ano]%></h3>
+		<%else%>
+			<h3>Cotizaciones del <%=Date.today.strftime("%m/%Y")%></h3>
+		<%end%>
+		<%if params[:modo] != nil%>
+			<%case params[:modo]%>
+			<%when "Bar"%>
+			<%=bar_chart @cots.group(:estado).count, xtitle:"Estado", ytitle:"Cantidad" %>
+			<%when "Pie"%>
+			<%= pie_chart @cots.group(:estado).count, library:{is3D:"true"}%>
+			<%else%>
+			<%= column_chart @cots.group(:estado).count, xtitle:"Estado", ytitle:"Cantidad" %>
+			<%end%>
+		<%else%>
+			<%= column_chart @cots.group(:estado).count, xtitle:"Estado", ytitle:"Cantidad" %>
+		<%end%>
+	<%end%>
+</div>

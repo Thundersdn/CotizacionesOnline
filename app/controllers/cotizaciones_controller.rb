@@ -14,6 +14,10 @@ class CotizacionesController < ApplicationController
 
   end
 
+  def id_u
+    self.usuario_id
+  end
+
   def selCliente
     @cliente = Cliente.find_by_rut(params[:rutCliente])
 
@@ -104,6 +108,24 @@ class CotizacionesController < ApplicationController
     session[:cot_id] = nil
   end
 
+  def estadisticas
+    ano = Time.now.strftime("%Y")
+    mes = Time.now.strftime("%m")
+    if(params[:ano] != nil)
+      @cots = Cotizacion.where("estado IS NOT NULL AND extract(year from fecha) = ? AND extract(month from fecha) = ?",params[:ano],params[:mes])
+    else
+      @cots = Cotizacion.where("estado IS NOT NULL AND extract(year from fecha) = ? AND extract(month from fecha) = ?",ano,mes)
+    end
+    
+    respond_to do |format|
+      format.html 
+      format.js
+      format.json { render json: @cots}
+    end
+
+  end
+
+
   def salir
 
     if session[:estado] = "guardada"
@@ -122,6 +144,11 @@ class CotizacionesController < ApplicationController
   def buscar
     @cotizaciones = Cotizacion.all
     @prodsCot = ProductoCotizacion.all
+
+    #Actualizar estado de cotizaciones
+
+
+
   end
 
   #def cotizacion_params

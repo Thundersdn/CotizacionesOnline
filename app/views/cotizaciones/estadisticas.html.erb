@@ -1,0 +1,38 @@
+<%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<input name="ano" type="text" onchange="actualizarGrafico(this, document.getElementsByName('mes')[0],document.getElementsByName('modo')[0]);" placeholder="Año" class="pull-left" >
+				 <select name="mes" onchange="actualizarGrafico(document.getElementsByName('ano')[0],this,document.getElementsByName('modo')[0]);">
+					<option value="1">Enero</option>
+					<option value="2">Febrero</option>
+					<option value="3">Marzo</option>
+					<option value="4">Abril</option>
+					<option value="5">Mayo</option>
+					<option value="6">Junio</option>
+					<option value="7">Julio</option>
+					<option value="8">Agosto</option>
+					<option value="9">Septiembre</option>
+					<option value="10">Octubre</option>
+					<option value="11">Noviembre</option>
+					<option value="12">Diciembre</option>
+				</select> 
+				<select name="modo" onchange="actualizarGrafico(document.getElementsByName('ano')[0],document.getElementsByName('mes')[0],this);">
+					<option value="Col">Columnas</option>
+					<option value="Bar">Barras</option>
+					<option value="Pie">Circulo</option>
+				</select>
+
+			</div>
+			<div class="row" id="Grafico">
+				<%= render partial: 'graficoCotizaciones', locals:{cots: @cots} %>
+			</div>
+
+			<div class="row">
+				<%=link_to "Volver", '/home', class:"btn btn-default btn-md center"%></td>
+			</div>
+		</div>
+	</div>
+</div>

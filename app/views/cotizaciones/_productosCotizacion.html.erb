@@ -1,6 +1,6 @@
 <tr>
   <th> Codigo </th>
-  <th> Descripción </th>
+  <th span="col-lg-4"> Descripción </th>
   <th> Valor Unitario </th>
   <th> Cantidad </th>
   <th> Subtotal </th>
@@ -15,14 +15,15 @@
     <td><%=p.id%></td>
     <td><%=p.descripcion%></td>
     <td><%=p.valor_unitario%></td>
-    <td><%= text_field :post, :cotizaciones, :value => @cantidad, :onchange => "cambiarCantidad(this,#{p.id});"%></td>
+    <td><%= text_field :post, :cotizaciones, :value => @cantidad, :onkeyup => "cambiarCantidad(this,#{p.id});"%></td>
     <td><%@total += p.valor_unitario*@cantidad%><%=p.valor_unitario*@cantidad%></td>
   </tr>
   <%end%>
 <%end%>
 <tr>
   <td>
-    <a href="#" onclick="abrirListaProd();">Agregar</a>
+  <a href="#" class="btn btn-link"  title="Agregar producto" data-toggle="modal" data-target="#ProdModal">Agregar</a>
+    <!--<a href="#" onclick="abrirListaProd();">Agregar</a>-->
     <%# link_to  "Agregar",'/productos/Buscar', remote: true %>
   </td>
 </tr>

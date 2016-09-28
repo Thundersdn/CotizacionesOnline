@@ -1,0 +1,59 @@
+<div class="container">
+<% if params[:modo] != nil%>
+	<%case params[:modo]%>
+	<%when "1"%>
+		<% content_for :title, 'Listado de clientes por vendedor' %>
+		<h3>Listado de clientes por vendedor</h3>
+		<table class="table">
+		<% @cots.group_by(&:usuario_id).each do |id, c|%>
+		<%if id != nil %>
+		<thead>
+		<tr>
+			<th>
+				Rut de vendedor  
+			</div>
+			<th>
+				   <%= id%>
+			</div>
+			</div>
+		</tr>
+
+		<tr>
+			<th>
+			Rut Cliente
+			</th>
+			<th>
+			Nombre
+			</th>
+			<th>
+			Telefono
+			</th>
+			<th>
+			Correo
+			</th>
+		</tr>
+		<% c.each do |cot| %>
+		<%if cot.cliente_id != nil%>
+		<tr>
+			<td>
+			<%=@cli.find(cot.cliente_id).rut%>
+			</td>
+			<td>
+			<%=@cli.find(cot.cliente_id).nombres%>
+			</td>
+			<td>
+			<%=@cli.find(cot.cliente_id).telefono%>
+			</td>
+			<td>
+			<%=@cli.find(cot.cliente_id).email%>
+			</td>
+		</tr>
+		<%end%>
+		<%end%>
+
+		<%end%>
+		<%end%>
+		</table>
+	<%end%>
+<%end%>
+</div>

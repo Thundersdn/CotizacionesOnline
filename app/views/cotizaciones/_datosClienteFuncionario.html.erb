@@ -1,5 +1,5 @@
 <% if @cliente.nil? %>
-  <table id="tabla_datos_cliente" border="1" width="620" style="float:left;">
+  <table class="table table-bordered table-condensed" id="tabla_datos_cliente" border="1" width="620" style="float:left;">
     <th colspan="2">
       Datos Cliente
     </th>
@@ -8,7 +8,7 @@
     </th>
     <tr>
       <!--<td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>-->
-      <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a>
+      <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a></td>
       <td><%= text_field_tag :usuario_id%></td>
       <td>Codigo</td>
       <td><%= text_field :codigo, current_user.id%></td>
@@ -55,7 +55,9 @@
         Datos Funcionario
       </th>
       <tr>
-        <td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>
+        <!--<td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>-->
+
+        <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a></td>
         <td><%= text_field_tag :cliente_id, @cliente.rut%></td>
         <td>Codigo</td>
         <td><%= text_field :post, :administrar, :value => current_user.id%></td>

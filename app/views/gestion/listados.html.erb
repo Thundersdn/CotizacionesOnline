@@ -1,0 +1,9 @@
+
+<%= form_tag("/gestion/mostrarListado", method: "get", target:"_blank",class:"form-group") do %>
+	<p> Informe de </p>
+	<%= select_tag(:modo, options_for_select([["Clientes por Vendedor",1],["Clientes de la empresa",2],["Ultimas compras por cliente",3],["Clientes sin compra",4],["Ultimas compras de la empresa",5],["Balance de compras y ventas",6],["Facturas por pagar",7]]),class:"form-input")%>
+	<%= submit_tag "Mostrar"%>
+<%end%>
+
+
+<%=link_to "Volver", '/home', class:"btn btn-default btn-md center"%></td>

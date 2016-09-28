@@ -10,7 +10,6 @@ class ClientesController < ApplicationController
 
   def new
     @cliente = Cliente.new
-
   end
 
   def create

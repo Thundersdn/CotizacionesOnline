@@ -24,8 +24,18 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
+#graficos
+gem "chartkick"
+
+
+
 #validacion rut
 gem 'rut_validation'
+#validacion de email
+gem 'email_validator'
+
+
+
 
 # Use jquery as the JavaScript library
 

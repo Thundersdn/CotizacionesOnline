@@ -39,7 +39,15 @@ Rails.application.routes.draw do
   get 'cotizaciones/salir'
   get 'cotizaciones/buscar'
 
+  get 'cotizaciones/estadisticas' => 'cotizaciones#estadisticas'
+
   post 'cotizaciones/administrar' => 'cotizaciones#actualizar'
+
+
+
+  get 'gestion/listados' => 'gestion#listados'
+  get 'gestion/informes' => 'gestion#informes'
+  get '/gestion/mostrarListado' => 'gestion#mostrarListado'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
