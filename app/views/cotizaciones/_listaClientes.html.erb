@@ -1,25 +1,25 @@
 
-    <div class="table-responsive">
-    <table class="table table-striped custab" id="tblGrid">
-    <thead >
-    
-        <td>Rut:</td>
-        <td><input type="text" onkeyup="buscarCliente(this.value);"></td>
+  <div class="table-responsive">
+  <table class="table table-striped custab" id="tblGrid">
+  <thead >
+  
+      <td>Rut:</td>
+      <td><input type="text" onkeyup="buscarCliente(this.value);"></td>
+      <tr>
+          <th>Nombres</th>
+          <th>Rut</th>
+          <th class="text-center">Accion</th>
+      </tr>
+  </thead>
+  <tbody id="listaClientes">
+      <% @clientes.each do |c| %>
         <tr>
-            <th>Nombres</th>
-            <th>Rut</th>
-            <th class="text-center">Accion</th>
+        <td><%=c.nombres%></td>
+        <td><%=c.rut%></td>
+        <td><%=link_to "Seleccionar", controller: 'cotizaciones', action:'selCliente', rutCliente: c.rut, remote: true, class:"btn btn-info btn-xs"%></td>
         </tr>
-    </thead>
-    <tbody id="listaClientes">
-        <% @clientes.each do |c| %>
-          <tr>
-          <td><%=c.nombres%></td>
-          <td><%=c.rut%></td>
-          <td><%=link_to "Seleccionar", controller: 'cotizaciones', action:'selCliente', rutCliente: c.rut, remote: true, class:"btn btn-info btn-xs"%></td>
-          </tr>
-        <%end%>
-        </tbody>
-    </table>
-    </div>
+      <%end%>
+      </tbody>
+  </table>
+  </div>
 

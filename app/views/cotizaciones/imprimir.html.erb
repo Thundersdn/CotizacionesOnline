@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body onload="window.print();">
+    <p>
+      Numero de Cotizacion: <%= @cot.id%><br>
+    </p>
+    <p>
+      Fecha: <%= @cot.fecha.strftime("%d/%m/%Y - %H-%M")%><br>
+    </p>
+    <p>
+      Estado: <%= @cot.estado%><br>
+    </p>
+    <br>
+    <h2>
+      CLIENTE <br>
+    </h2>
+    <br>
+    <p>
+      Nombre: <%= @cli.nombres%><br>
+    </p>
+    <p>
+      Direccion: <%= @cli.direccion%><br>
+    </p>
+    <p>
+      Comuna: <%= @cli.comuna%><br>
+    </p>
+    <p>
+      Ciudad: <%= @cli.ciudad%><br>
+    </p>
+    <p>
+      Telefono: <%= @cli.telefono%><br>
+    </p>
+    <%if @cli.fax != nil%>
+    <p>
+      Fax: <%= @cli.fax%><br>
+    </p>
+    <%end%>
+    <p>
+      E-Mail: <%= @cli.email%><br>
+    </p>
+    <br>
+    <h2>
+      Productos <br>
+    </h2>
+    <br>
+    <table>
+      <tr>
+        <th> Codigo </th>
+        <th span="col-lg-4"> Descripción </th>
+        <th> Valor Unitario </th>
+        <th> Cantidad </th>
+        <th> Subtotal </th>
+        <th> Descuento </th>
+        <th> Total </th>
+      </tr>
+    <% @total = 0%>
+      <% if @prodsCot != nil && @cot != nil %>
+        <% @prodsCot.each do |p| %>
+          <% @cantidad = @cot.producto_cotizacions.find_by(:producto_id => p.id).cantidad%>
+      <tr>
+        <td><%=p.id%></td>
+        <td><%=p.descripcion%></td>
+        <td><%=p.valor_unitario%></td>
+        <td><%=@cantidad%></td>
+        <td><%=p.valor_unitario*@cantidad%></td>
+        <td><%=p.descuento%></td>
+        <td><%= (p.valor_unitario*@cantidad*(1.0- p.descuento.to_f/100)).round%></td>
+        <%@total += (p.valor_unitario*@cantidad*(1.0- p.descuento.to_f/100)).round%>
+      </tr>
+      <%end%>
+    <%end%>
+    </table>
+    <br>
+    <h2> Informacion de la cotización</h2>
+    <br>
+    <p> Emisor: <%= @usu.nombre%> <br></p>
+    <p> Forma de pago: <%= @cot.forma_de_pago%> <br></p>
+    <p> Validez: <%= @cot.validez%> <br></p>
+    <p> Observaciones: <%= @cot.observacion%> <br></p>
+    <br>
+    <h2> Cotización </h2>
+    <br>
+    <p> Total neto: <%= @cot.total_neto%> <br></p>
+    <p> Descuento: <%= @cot.descuentos%> <br></p>
+    <p> Sub Total: <%= @cot.subtotal%> <br></p>
+    <p> Iva: <%= (@cot.subtotal.to_f*1.19).round%> <br></p>    
+    <p> Total: <%= @cot.total%> <br></p>
+    <p> Gracias por cotizar en nuestra empresa </p>
+    <p> Esperamos verlo pronto</p>
+
+  </body>
+</html>

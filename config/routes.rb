@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :productos
   root 'sesion#login'
 
   resources :usuarios
   resources :clientes
+
   resources :sesion, :only => [:crear, :destruir, :login]
 
   #get 'login/index'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   get 'usuarios/new' => 'usuario#new'
   get 'usuarios' => 'usuario#index'
   get 'Admin' => 'usuario#index'
+  get 'productos' => 'productos#index'
+
 
   get 'gestion' => 'menu#index'
 
@@ -36,18 +40,25 @@ Rails.application.routes.draw do
   get 'cotizaciones/agregarProd'
   get 'cotizaciones/cambiarCantidad'
   get 'cotizaciones/actualizar'
-  get 'cotizaciones/salir'
+  get 'cotizaciones/salir' => 'cotizaciones#salir'
   get 'cotizaciones/buscar'
 
   get 'cotizaciones/estadisticas' => 'cotizaciones#estadisticas'
 
   post 'cotizaciones/administrar' => 'cotizaciones#actualizar'
 
-
+  get 'cotizaciones/eliminar' => 'cotizaciones#eliminarCot'
+  get 'cotizaciones/enviarCorreo' => 'cotizaciones#enviarCorreo'
 
   get 'gestion/listados' => 'gestion#listados'
   get 'gestion/informes' => 'gestion#informes'
   get '/gestion/mostrarListado' => 'gestion#mostrarListado'
+
+  get '/cotizaciones/imprimir' => 'cotizaciones#imprimir'
+
+  #mail
+  get '/verificarCotizacion/:id', to:'cotizaciones#confirmar'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

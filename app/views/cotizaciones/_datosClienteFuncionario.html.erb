@@ -6,18 +6,18 @@
     <th colspan="2">
       Datos Funcionario
     </th>
-    <tr>
+    <tr >
       <!--<td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>-->
       <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a></td>
-      <td><%= text_field_tag :usuario_id%></td>
+      <td ><%= text_field_tag :usuario_id%></td>
       <td>Codigo</td>
-      <td><%= text_field :codigo, current_user.id%></td>
+      <td><%= text_field_tag :codigo, current_user.id%></td>
     </tr>
     <tr>
       <td>Nombres</td>
       <td><%= text_field :nombres, :post %></td>
       <td>Rut</td>
-      <td><%= text_field :rut,  current_user.rut%></td>
+      <td><%= text_field_tag :rut,  current_user.rut%></td>
     </tr>
     <tr>
       <td>Direccion</td>
@@ -43,11 +43,11 @@
     </tr>
     <tr>
       <td>Email</td>
-      <td><%= text_field :post, :administrar%></td>
+      <td><%= text_field_tag :email%></td>
     </tr>
   </table>
 <%else%>
-    <table id="tabla_datos_cliente" border="1" style="float:left;">
+    <table class="table table-bordered table-condensed" id="tabla_datos_cliente" border="1" width="620" style="float:left;">
       <th colspan="2">
         Datos Cliente
       </th>
@@ -58,15 +58,15 @@
         <!--<td>Rut <a href="#" onclick="mostrarClientes()">(Buscar)</a> <%# link_to "(Buscar)", 'buscarCliente', 'data-popup' => true%></td>-->
 
         <td>Rut <a href="#" class="btn btn-link"  title="Buscar clientes" data-toggle="modal" data-target="#CliModal">(Buscar)</a></td>
-        <td><%= text_field_tag :cliente_id, @cliente.rut%></td>
+        <td><%= text_field_tag :usuario_id, @cliente.rut%></td>
         <td>Codigo</td>
-        <td><%= text_field :post, :administrar, :value => current_user.id%></td>
+        <td><%= text_field_tag :codigo, current_user.id%></td>
       </tr>
       <tr>
         <td>Nombres</td>
         <td><%= text_field :post, :administrar, :value => @cliente.nombres%></td>
         <td>Rut</td>
-        <td><%= text_field :post, :administrar, :value => current_user.rut%></td>
+        <td><%= text_field_tag :rut, current_user.rut%></td>
       </tr>
       <tr>
         <td>Direccion</td>
@@ -92,7 +92,7 @@
       </tr>
       <tr>
         <td>Email</td>
-        <td><%= text_field :post, :administrar, :value => @cliente.email%></td>
+        <td><%= text_field_tag :email,  @cliente.email%></td>
       </tr>
     </table>
 <%end%>

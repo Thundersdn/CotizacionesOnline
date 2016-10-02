@@ -11,15 +11,20 @@ class ApplicationController < ActionController::Base
   def cotizacion_actual
     #@cotizacion_actual ||= Cotizacion.new(:id => Cotizacion.maximum(:id).to_i.next)
     #@cotizacion_actual ||= Cotizacion.find(session[:cot_id]) if session[:cot_id]
+    puts "Entrando en cotizacion actual"
     if session[:cot_id] == nil
-      #puts "Creando cotizacion"
-      @cotizacion_actual = Cotizacion.create()
+      puts "Creando cotizacion"
+      @cotizacion_actual = Cotizacion.create
       session[:cot_id] = @cotizacion_actual.id
       session[:estado] = "nueva"
-      #puts "Cotizacion creada! id= " + @cotizacion_actual.id.to_s()
+      puts "Cotizacion creada! id= " + @cotizacion_actual.id.to_s()
     else
-      puts "Recuperando cotizacion"
-      @cotizacion_actual = Cotizacion.find(session[:cot_id])
+      if Cotizacion.exists?(id: session[:cot_id])
+        puts "Recuperando cotizacion"
+        @cotizacion_actual = Cotizacion.find(session[:cot_id])
+      else
+        @cotizacion_actual = Cotizacion.create(id:session[:cot_id])
+      end
     end
     return @cotizacion_actual
   end

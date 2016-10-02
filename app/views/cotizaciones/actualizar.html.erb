@@ -1,2 +1,4 @@
-<p>Cotizacion actualizada!</p>
-<%= link_to 'volver', '/home'%>
+<h3>Cotizacion actualizada!</h3>
+<%= link_to 'Nueva cotizacion', '/cotizaciones/administrar', class:"btn btn-primary", style:"color:white;"%>
+<%= link_to 'Volver a cotizacion', {action:"administrar", cot_id:@cot.id }, class:"btn btn-primary", style:"color:white;"%>
+<%= link_to 'Volver al menu', '/home', class:"btn btn-primary", style:"color:white;"%>

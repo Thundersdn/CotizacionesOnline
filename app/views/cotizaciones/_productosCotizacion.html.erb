@@ -4,33 +4,49 @@
   <th> Valor Unitario </th>
   <th> Cantidad </th>
   <th> Subtotal </th>
-  <!--<th> Descuento </th>
-  <th> Total </th>-->
+  <th> % Descuento </th>
+  <th> Total </th>
 </tr>
 <% @total = 0%>
-<% if @prodsCot != nil && @cotizacion != nil %>
+<% if @prodsCot != nil && @cot != nil %>
   <% @prodsCot.each do |p| %>
-        <% @cantidad = @cotizacion.producto_cotizacions.find_by(:producto_id => p.id).cantidad%>
+        <% @cantidad = @cot.producto_cotizacions.find_by(:producto_id => p.id).cantidad%>
   <tr>
     <td><%=p.id%></td>
     <td><%=p.descripcion%></td>
     <td><%=p.valor_unitario%></td>
-    <td><%= text_field :post, :cotizaciones, :value => @cantidad, :onkeyup => "cambiarCantidad(this,#{p.id});"%></td>
-    <td><%@total += p.valor_unitario*@cantidad%><%=p.valor_unitario*@cantidad%></td>
+    <td><%= text_field :post, :cotizaciones, :value => @cantidad, :onchange => "cambiarCantidad(this,#{p.id},#{p.stock});"%></td>
+    <td><%=p.valor_unitario*@cantidad%></td>
+    <td><%=p.descuento%></td>
+    <td><%= (p.valor_unitario*@cantidad*(1.0- p.descuento.to_f/100)).round%></td>
+    <%@total += (p.valor_unitario*@cantidad*(1.0- p.descuento.to_f/100)).round%>
   </tr>
   <%end%>
 <%end%>
 <tr>
   <td>
-  <a href="#" class="btn btn-link"  title="Agregar producto" data-toggle="modal" data-target="#ProdModal">Agregar</a>
+  <a href="#" class="btn btn-primary center-block", style="color:white;"  title="Agregar producto" data-toggle="modal" data-target="#ProdModal">Agregar</a>
     <!--<a href="#" onclick="abrirListaProd();">Agregar</a>-->
     <%# link_to  "Agregar",'/productos/Buscar', remote: true %>
   </td>
 </tr>
 
+<% if @prodsCot == nil%>
+  <% cProd = 0%>
+<% else %>
+  <% cProd = @prodsCot.count%>
+<% end %>
+<script type="text/javascript">
+ var cProd = <%= cProd%>;
+</script>
+
 <%= javascript_tag("document.getElementById('total_neto').value = #{@total};
                     var d = document.getElementById('descuentos').value;
-                    document.getElementById('subtotal').value = #{@total}-d;
+                    if(#{@total} > 0){
+                      document.getElementById('subtotal').value = #{@total}-d;
+                    }else{
+                      document.getElementById('subtotal').value = 0;
+                    }
                     var sub = document.getElementById('subtotal').value;
                     document.getElementById('iva').value = Math.trunc(sub*0.19);
                     var iva = document.getElementById('iva').value;

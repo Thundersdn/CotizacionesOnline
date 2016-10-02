@@ -33,10 +33,13 @@ gem "chartkick"
 gem 'rut_validation'
 #validacion de email
 gem 'email_validator'
+#guardar infomacion de cuenta gmail
+gem 'figaro'
 
 
-
-
+#selector de fecha
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
 # Use jquery as the JavaScript library
 
 gem 'jquery-rails'

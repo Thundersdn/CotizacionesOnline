@@ -1,4 +1,7 @@
-<h1>Consultar cotizaciones</h1>
+
+
+
+<h3 class="text-center">Consultar cotizaciones</h3>
 
 <div class="container" style="border:2px solid #cecece;">
 <div class="row">
@@ -6,89 +9,56 @@
     N°Cotizacion
     </div>
     <div class="col col-lg-2">
-    <input type="text" id="NCot">
+    <input type="text" id="NCot" onchange="buscarCot();">
     </div>
     <div class="col col-lg-2">
     Fecha
     </div>
-    <div class="col col-lg-2">
-    <input type="text" id="fecha" placeholder="dd-mm-yyyy">
+
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='fecha1'>
+                    <input type='text' id="fecha" class="form-control" onchange="buscarCot();"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#fecha1').datetimepicker({locale: 'es' ,viewMode: 'days',format:'DD/MM/YYYY'});
+            });
+            $("#fecha1").on("dp.change", function(e) {
+            buscarCot();
+
+            });
+        </script>
+
     </div>
+
+
 </div>
 <div class="row">
     <div class="col col-lg-2">
     Rut Cliente
     </div>
     <div class="col col-lg-2">
-    <input type="text" id="RCli">
+    <input type="text" id="RCli" onchange="buscarCot();">
     </div>
     <div class="col col-lg-2">
     Estado
     </div>
     <div class="col col-lg-2">
-    <%= select_tag('estado','<option value="Pendiente">Pendiente</option><option value="Rechazada">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
+    <%= select_tag('estado','<option value="Pendiente">Pendiente</option><option value="Rechazada">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe,onchange:'buscarCot();')%>
     </div>
 </div>
 </div>
 <div class="container" style="height:450px; overflow:scroll;">
-<table class="table table-responsive table-bordered table-condensed">
-    <% @cotizaciones.each do |c| %>
-        <%if c.cliente_id != nil && c.estado = "Pendiente"%>
-        <tr class="info">
-            <th>
-            Cotizacion N° <%=c.id%>
-            </th>
-            <th>
-            Cliente: <%=c.cliente_id%>
-            </th>
-            <th>
-            Funcionario: <%=c.usuario_id%>
-            </th>
-            <th>
-            Fecha: <%=c.fecha%>
-            </th>
-        </tr>
-        <tr>
-            <th colspan="4">
-            Productos
-            </th>
-        </tr>
-        <tr>
-            <th>
-            Codigo
-            </th>
-            <th>
-            Descripción
-            </th>
-            <th>
-            Cantidad
-            </th>
-            <th>
-            Precio
-            </th>
-        </tr>
-        
-        <% c.productos.each do |p|%>
-        <tr class="active">
-            <td><%=p.codigo %></td>
-            <td><%=p.descripcion %></td>
-            <td><%=c.producto_cotizacions.find_by(:producto_id => p.id).cantidad%></td>
-            <td><%= c.producto_cotizacions.find_by(:producto_id => p.id).cantidad*p.valor_unitario%></td>
-            </tr>
-        <%end%>
-        
-        <tr class="success">
-        <th colspan="3">
-            Total
-        </th>
-        <td colspan="1">
-            <%=c.total%>
-        </td>
-        </tr>
 
-        <%end%>
-    <%end%>
-</table>
+    <%= render partial: 'mostrarCotizaciones', locals:{cot: @cot} %>
+
 
 </div>
-<%=link_to "Volver", '/home', class:"btn btn-primary center-block", style:"color:white;"%>
+<%=link_to "Volver", '/home', class:"btn btn-primary col-xs-4 col-xs-offset-4 ", style:"color:white;"%>

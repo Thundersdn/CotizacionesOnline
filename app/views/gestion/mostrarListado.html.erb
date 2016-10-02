@@ -12,11 +12,10 @@
 		<tr>
 			<th>
 				Rut de vendedor  
-			</div>
+			</th>
 			<th>
-				   <%= @us.find(c[0].usuario_id).rut%>
-			</div>
-			</div>
+				<%= @us.find(c[0].usuario_id).rut%>
+			</th>
 		</tr>
 
 		<tr>
@@ -56,6 +55,84 @@
 		<%end%>
 		<%end%>
 		</table>
+	<%when "2"%>
+	<h1>Modulo empresa no implementado</h1>
+	<%when "3"%>
+	<h3>Listado de clientes de la empresa</h3>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Nombre 
+			</th>
+			<th>
+				Monto
+			</th>
+			<th>
+				Fecha
+			</th>
+			
+		</tr>
+	<% @cots.where("estado = 'Aceptada'").group_by(&:cliente_id).each do |c_id, cot| %>
+		<% c = cot.sort_by &:fecha%>
+		
+		
+
+		<tr>
+			<th>
+				<%= @cli.find(c_id).nombres%>
+			</th>
+			<th>
+				<%= c.first.total%>
+			</th>
+			<th>
+				<%= c.first.fecha%>
+			</th>
+		</tr>
 	<%end%>
+	</thead>
+	</table>
+	<% when "4"%>
+	<h3>Listado de clientes sin compra</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Rut 
+					</th>
+					<th>
+						Nombre 
+					</th>
+					<th>
+						Fecha ingreso
+					</th>
+				</tr>
+				<% @cots.where("estado != 'Aceptada'").group_by(&:cliente_id).each do |c_id, cot| %>
+					<tr>
+						<th>
+							<%= @cli.find(c_id).rut%>
+						</th>
+						<th>
+							<%= @cli.find(c_id).nombres%>
+						</th>
+						<th>
+							<%= @cli.find(c_id).created_at%>
+						</th>
+					</tr>
+				<%end%>
+			</thead>
+		</table>
+    <%when "5"%>
+	<h1>Modulo empresa no implementado</h1>
+	<%when "6"%>
+	<h1>Modulo empresa no implementado</h1>
+	<%when "7"%>
+	<h1>Modulo empresa no implementado</h1>
+	<%end%>
+
+
+	<%end%>
+
 <%end%>
+<%=link_to "Cerrar", '_self', onclick:"window.close();", class:"btn btn-default btn-md center"%></td>
 </div>

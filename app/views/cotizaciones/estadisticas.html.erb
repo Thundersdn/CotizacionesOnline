@@ -1,9 +1,8 @@
 <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
+
+		<div class="container text-center img-rounded col-xs-6 col-xs-offset-3" style="background-color: rgba(200, 200,200 , 0.1);">
+			<div class="row ">
 				<input name="ano" type="text" onchange="actualizarGrafico(this, document.getElementsByName('mes')[0],document.getElementsByName('modo')[0]);" placeholder="Año" class="pull-left" >
 				 <select name="mes" onchange="actualizarGrafico(document.getElementsByName('ano')[0],this,document.getElementsByName('modo')[0]);">
 					<option value="1">Enero</option>
@@ -30,9 +29,7 @@
 				<%= render partial: 'graficoCotizaciones', locals:{cots: @cots} %>
 			</div>
 
-			<div class="row">
+			<div class="row col-xs-12">
 				<%=link_to "Volver", '/home', class:"btn btn-default btn-md center"%></td>
 			</div>
 		</div>
-	</div>
-</div>

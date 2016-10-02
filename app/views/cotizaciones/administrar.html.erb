@@ -1,5 +1,7 @@
+
 <h1> Administración de Cotizaciones</h1>
 <h3> Crear o actualizar cotizaciones</h3>
+
 <div class="modal fade" id="CliModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -49,15 +51,44 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel2"><i class="fa fa-share-alt"></i> Buscar Productos</h4>
       </div>
-      <div class="modal-body">   
-             
+      <div class="modal-body table-responsive"> 
+      <td>Codigo:</td>
+          <td><input name="cod" type="text" onkeyup="buscarProd(this,document.getElementsByName('desc')[0]);" >
+           
+            </td>
+          <td>Descripcion</td>
+          <td><input name="desc" type="text" onkeyup="buscarProd(document.getElementsByName('cod')[0],this);" ></td>  
+        <table class="table table-striped custab" id="tblGrid">
+        <thead class="bprod">
+        
+        
+        <tr>
+          <th class="col-xs-2" >Codigo</th>
+          <th >Descripcion</th>
+          <th >Precio Lista</th>
+          <th >Stock</th>
+          <th >Estado</th>
+        </tr>
+      </thead>
+      <tbody id = "listaProductos">
         <%= render partial: 'listaProductos', locals:{productos: @productos} %>
-      </div>28/09/16
+      </tbody>
+      </table>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
+<div class="col-xs-12">
+<table border="1" class="table table-bordered table-hover table-condensed table-responsive" id="tabla_productos_cotizacion">
+    <tr>
+      <th colspan="7">Productos de esta cotizacion</th>
+    </tr>
+    <%= render partial: 'productosCotizacion', locals:{prodsCot: @prodsCot, cotizacion: @cot}%>
+
+</table>
 </div>
 
 <%=form_tag do%>
@@ -70,11 +101,76 @@
       Datos Cotización
     </th>
     <th>
-      <%= link_to "Consultar Cotizaciones", action:"buscar", controller:"cotizaciones", class:"btn btn-default" %>
+      <%= link_to "Consultar Cotizaciones", {action:"buscar", controller:"cotizaciones"}, class:"btn btn-primary",style:"color:white;" %>
     </th>
+
+    <%if params[:cot_id].present? %>
+    <%puts "Si hay parametro!  params[:cot_id]="+params[:cot_id]%>
     <tr>
       <td>N° Cotización</td>
-      <td><%= text_field_tag  :id, cotizacion_actual.id%></td>
+      <td><%= text_field_tag  :id, @cot.id, readonly:"disabled"%></td>
+      <td>Fecha</td>
+      <td><%= text_field_tag  :fecha , @cot.fecha.strftime("%d/%m/%Y - %H:%M")%></td>
+    </tr>
+    <tr>
+      <td>Estado</td>
+      <td>
+      <% case @cot.estado %>
+      <%when "Pendiente"%>
+        <%= select_tag('estado','<option value="Pendiente" selected="selected">Pendiente</option><option value="Rechazada">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
+      <%when "Rechazada"%>
+        <%= select_tag('estado','<option value="Pendiente" >Pendiente</option><option value="Rechazada" selected="selected">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
+      <%when "Aceptada"%>
+        <%= select_tag('estado','<option value="Pendiente" >Pendiente</option><option value="Rechazada" >Rechazada</option><option value="Aceptada" selected="selected">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
+      <%when "Expirada"%>
+        <%= select_tag('estado','<option value="Pendiente" >Pendiente</option><option value="Rechazada" >Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada" selected="selected">Expirada</option>'.html_safe)%>
+      <%end%>
+      </td>
+      <td>Total Neto</td>
+      <td><%= text_field_tag  :total_neto, @cot.total_neto,readonly:"disabled"%></td>
+    </tr>
+    <tr>
+      <td>Forma de Pago</td>
+      <td>
+
+      <% case @cot.forma_de_pago %>
+      <% when "Efectivo"%>
+        <%= select_tag('forma_de_pago', '<option value="Efectivo" selected="selected">Efectivo</option><option value="Tarjeta">Tarjeta</option><option value="Cheque">Cheque</option>'.html_safe )%>
+      <% when "Tarjeta"%>
+        <%= select_tag('forma_de_pago', '<option value="Efectivo" >Efectivo</option><option value="Tarjeta" selected="selected">Tarjeta</option><option value="Cheque">Cheque</option>'.html_safe )%>
+      <% when "Cheque"%>
+        <%= select_tag('forma_de_pago', '<option value="Efectivo" >Efectivo</option><option value="Tarjeta">Tarjeta</option><option value="Cheque"selected="selected">Cheque</option>'.html_safe )%>
+      <%end%>
+
+      </td>
+      <td>Descuento</td>
+      <td><%= text_field_tag :descuentos, @cot.descuentos, onclick:"jQuery('#DescModal').modal();" %></td>
+    </tr>
+    <tr>
+      <td>Validez</td>
+      <td><%= text_field_tag  :validez, @cot.validez%> dias </td>
+      <td>Sub total</td>
+      <td><%= text_field_tag  :subtotal, @cot.subtotal, readonly:"disabled"%></td>
+    </tr>
+    <tr>
+      <td>Observaciones</td>
+      <td><%= text_field_tag  :observacion, @cot.observacion %></td>
+      <td>Iva</td>
+      <td><%= text_field_tag  :iva, @cot.iva, readonly:"disabled"%></td>
+    </tr>
+    <tr>
+      <td><br></td>
+      <td><br></td>
+      <td>Total</td>
+      <td><%=text_field_tag  :total, @cot.total,readonly:"disabled"%></td>
+    </tr>
+
+
+    <%else%>
+    <%puts "No hay parametro!"%>
+    <tr>
+      <td>N° Cotización</td>
+      <td><%= text_field_tag  :id, @cot.id, readonly:"disabled"%></td>
       <td>Fecha</td>
       <td><%= text_field_tag  :fecha , Time.now.strftime("%d/%m/%Y - %H:%M")%></td>
     </tr>
@@ -84,7 +180,7 @@
         <%= select_tag('estado','<option value="Pendiente">Pendiente</option><option value="Rechazada">Rechazada</option><option value="Aceptada">Aceptada</option><option value="Expirada">Expirada</option>'.html_safe)%>
       </td>
       <td>Total Neto</td>
-      <td><%= text_field_tag  :total_neto%></td>
+      <td><%= text_field_tag  :total_neto, 0,readonly:"true"%></td>
     </tr>
     <tr>
       <td>Forma de Pago</td>
@@ -96,38 +192,41 @@
     </tr>
     <tr>
       <td>Validez</td>
-      <td><%= text_field_tag  'validez'%> dias  </td>
+      <td><%= text_field_tag  :validez%> dias  </td>
       <td>Sub total</td>
-      <td><%= text_field_tag  'subtotal'%></td>
+      <td><%= text_field_tag  :subtotal, 0,readonly:"true"%></td>
     </tr>
     <tr>
       <td>Observaciones</td>
-      <td><%= text_field_tag  'observacion' %></td>
+      <td><%= text_field_tag  :observacion %></td>
       <td>Iva</td>
-      <td><%= text_field_tag  'iva'%></td>
+      <td><%= text_field_tag  :iva,  0,readonly:"true"%></td>
     </tr>
     <tr>
       <td><br></td>
       <td><br></td>
       <td>Total</td>
-      <td><%=text_field_tag  'total'%></td>
+      <td><%=text_field_tag  :total,  0,readonly:"true"%></td>
     </tr>
+     
+    <%end%>
+
+
   </table>
 </div>
-    <table border="1" class="table table-bordered table-hover table-condensed table-responsive" id="tabla_productos_cotizacion">
-    <tr>
-      <th colspan="5">Productos de esta cotizacion</th>
-    <tr>
-    <%= render partial: 'productosCotizacion', locals:{prodsCot: @prodsCot, cotizacion: @cotizacion}%>
-
-  </table>
-
-  <%=submit_tag "Actualizar", :controller => 'cotizaciones', :action => 'actualizar', class:"btn btn-primary"%>
-
+  <%if params.has_key?(:cot_id)%>
+  <%#submit_tag  "Actualizar" , :controller => 'cotizaciones', :action => 'actualizar', class:"btn btn-primary"%>
+  <%=submit_tag  "Actualizar" , id:"submit", :onclick=>"return validarCotizacion();", class:"btn btn-primary" , :remote => true%>
+  <%else%>
+  <%#submit_tag  "Guardar", :controller => 'cotizaciones', :action => 'actualizar', class:"btn btn-primary"%>
+  
+  <%=submit_tag  "Guardar", id:"submit", :onclick=>"return validarCotizacion();", class:"btn btn-primary"%>
+ 
+  <%end%>
+  <%= link_to "Limpiar", nil, class:"btn btn-primary", style:"color:white;"%>
+  <%= link_to "Imprimir", {action:"imprimir", cot_id:@cot.id} , class:"btn btn-primary", style:"color:white;",:target => "_blank"%>
+  <%= link_to "E-Mail", '/cotizaciones/enviarCorreo', class:"btn btn-primary", style:"color:white;" %>
+  <%= link_to "Volver", '/cotizaciones/salir', class:"btn btn-primary", style:"color:white;"%>
 <%end%>
 
 <%# link_to "Actualizar", '/cotizaciones/actualizar' ,method: :post%>
-<%= link_to "Limpiar", nil %>
-<%= link_to "Imprimir", nil %>
-<%= link_to "E-Mail", nil %>
-<%= link_to "Volver", controller: :cotizaciones , action: :salir%>

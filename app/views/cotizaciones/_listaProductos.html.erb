@@ -1,37 +1,15 @@
-<div class = "table-responsive" id = "listaProductos" >
-    <table class="table table-striped custab" id="tblGrid">
-    <thead class="bprod">
-      
-      <td>Codigo:</td>
-      <td><input name="cod" type="text" value = '<%=params[:codigo]%>' onkeyup="buscarProd(this,document.getElementsByName('desc')[0]);" >
-       
-        </td>
-      <td>Descripcion</td>
-      <td><input name="desc" type="text" onkeyup="buscarProd(document.getElementsByName('cod')[0],this);" ></td>
-    
+
+<%if @productos != nil%>
+  <% @productos.each do |c| %>
     <tr>
-      <th class="span1">Codigo</th>
-      <th class="span2">Descripcion</th>
-      <th class="col-lg-3">Precio Lista</th>
-      <th class="span1">Stock</th>
-      <th class="col-md-2">Estado</th>
-    </tr>
-  </thead>
-    <tbody>
-      <%if @productos != nil%>
-        <% @productos.each do |c| %>
-          <tr>
-            <td><%=c.codigo%></td>
-            <td><%=c.descripcion%></td>
-            <td><%=c.valor_unitario%></td>
-            <td><%=c.stock%></td>
-            <td><%=c.estado%></td>
-            <%if c.stock > 0%>
-                <td><%=link_to "Agregar", controller: 'cotizaciones', action:'agregarProd', codProd: c.codigo, remote: true, codigo:params[:codigo], desc:params[:desc], class:"btn btn-info btn-xs"%> </td>
-            <%end%>
-          </tr>
+      <td><%=c.codigo%></td>
+      <td><%=c.descripcion%></td>
+      <td><%=c.valor_unitario%></td>
+      <td><%=c.stock%></td>
+      <td><%=c.estado%></td>
+      <%if c.stock > 0%>
+          <td><%=link_to "Agregar", controller: 'cotizaciones', action:'agregarProd', codProd: c.codigo, remote: true, codigo:params[:codigo], desc:params[:desc], class:"btn btn-primary btn-xs"%> </td>
       <%end%>
-    <%end%>
-    </tbody>
-  </table>
-</div>
+    </tr>
+  <%end%>
+<%end%>

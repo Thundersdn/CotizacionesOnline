@@ -36,6 +36,8 @@ class SesionController < ApplicationController
     #  session[:cot_id] = nil
     #end
 
+    reset_session
+
     redirect_to '/login'
   end
 

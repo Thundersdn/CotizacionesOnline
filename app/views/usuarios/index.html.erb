@@ -1,34 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div id="container">
+  <div id="row">
+    <p id="notice"><%= notice %></p>
+  </div>
+  <div id="row">
+    <h1 class="text-center">Lista de Usuarios</h1>
+  </div>
 
-<h1>Lista de Usuarios</h1>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Rut</th>
+          <th>Nombre</th>
+          <th>Privilegios</th>
+          <th>Ultimo login</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Rut</th>
-      <th>Nombre</th>
-      <th>Privilegios</th>
-      <th>Ultimo login</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @usuarios.each do |usuario| %>
+          <tr>
+            <td><%= usuario.rut %></td>
+            <td><%= usuario.nombre %></td>
+            <td align="center"><%= usuario.privilegios %></td>
+            <td><%= usuario.ultimo_login %></td>
+            <td><%= link_to 'Mostrar', usuario , class:"btn btn-primary btn-xs center-block", style:"color:white;"%></td>
+            <td><%= link_to 'Editar', edit_usuario_path(usuario), class:"btn btn-primary btn-xs center-block", style:"color:white;" %></td>
+            <td><%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Esta Seguro?' } , class:"btn btn-primary btn-xs center-block", style:"color:white;"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <tbody>
-    <% @usuarios.each do |usuario| %>
-      <tr>
-        <td><%= usuario.rut %></td>
-        <td><%= usuario.nombre %></td>
-        <td align="center"><%= usuario.privilegios %></td>
-        <td><%= usuario.ultimo_login %></td>
-        <td><%= link_to 'Mostrar', usuario %></td>
-        <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
-        <td><%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Nuevo Usuario', new_usuario_path %><br>
-<%= link_to 'Volver', 'home' %>
+  <br>
+  <div id="row ">
+    <%= link_to 'Nuevo Usuario', new_usuario_path ,class:"btn btn-primary col-xs-offset-5", style:"color:white;"%>
+    <%= link_to 'Volver', 'home' ,class:"btn btn-primary ", style:"color:white;"%>
+  </div>
+</div>

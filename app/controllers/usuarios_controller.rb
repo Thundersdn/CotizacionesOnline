@@ -1,5 +1,7 @@
 class UsuariosController < ApplicationController
-  #before_filter :authorize, :only => [:new, :create, :index, :edit, :show, :destroy]
+  if Rails.env.production?
+    before_filter :authorize, :only => [:new, :create, :index, :edit, :show, :destroy]
+  end
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
@@ -33,7 +35,7 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
-        session[:id] = @usuario.id
+        #session[:id] = @usuario.id
         format.html { redirect_to @usuario, notice: 'Usuario creado satisfactoriamente.' }
         format.json { render :show, status: :created, location: @usuario }
       else

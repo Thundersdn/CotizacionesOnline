@@ -1,19 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Rut:</strong>
-  <%= @cliente.rut %>
-</p>
+<div class="container text-center img-rounded col-xs-4 col-xs-offset-4" style="background-color: lightblue;">
+	<div class="row">
+		<h3 id="notice"><%= notice %></h3>
+	</div>
+	<div class="row text-center">
+		<p>
+		  <strong>Rut:</strong>
+		  <%= @cliente.rut %>
+		</p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @cliente.nombres %>
-</p>
+		<p>
+		  <strong>Nombre:</strong>
+		  <%= @cliente.nombres %>
+		</p>
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @cliente.direccion %>
-</p>
-
-<%# link_to 'Editar', edit_cliente_path(@usuario) %> |
-<%= link_to 'Volver', '/home' %>
+		<p>
+		  <strong>Direccion:</strong>
+		  <%= @cliente.direccion %>
+		</p>
+	</div>
+	<%# link_to 'Editar', edit_cliente_path(@usuario) %> 
+	<%= link_to 'Volver', '/home', class:"btn btn-primary block-center", style:"color:white;"%>
+</div>

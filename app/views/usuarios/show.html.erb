@@ -1,3 +1,5 @@
+<div class="panel">
+<div class="panel-body text-center col-xs-6 col-xs-offset-3">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -20,5 +22,7 @@
   <%= @usuario.ultimo_login %>
 </p>
 
-<%= link_to 'Editar', edit_usuario_path(@usuario) %> |
-<%= link_to 'Volver', usuarios_path %>
+<%= link_to 'Editar', edit_usuario_path(@usuario),class:"btn btn-primary btn-xs", style:"color:white;" %> |
+<%= link_to 'Volver', usuarios_path, class:"btn btn-primary btn-xs", style:"color:white;" %>
+</div>
+</div>
